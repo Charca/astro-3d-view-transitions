@@ -1,0 +1,18 @@
+---
+import Card from '../components/Card.astro'
+import BookIcon from '../components/icons/BookIcon.astro'
+import ClockIcon from '../components/icons/ClockIcon.astro'
+import Layout from '../layouts/Layout.astro'
+---
+
+<Layout title="Profile | Astro 3D View Transitions Demo">
+  <div class="max-w-[350px] flex flex-col gap-8">
+    <h1 class="font-bold text-4xl">Profile</h1>
+    <Card number={83} label="Finished homeworks" iconColor="blue">
+      <BookIcon slot="icon" />
+    </Card>
+    <Card number={139} label="Hours spent on lections" iconColor="green">
+      <ClockIcon slot="icon" />
+    </Card>
+  </div>
+</Layout>

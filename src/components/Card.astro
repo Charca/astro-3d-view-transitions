@@ -1,0 +1,37 @@
+---
+interface Props {
+  number: number
+  label: string
+  iconColor?: string
+}
+
+const { number, label, iconColor } = Astro.props
+let iconColorClass, iconColorBgClass
+
+switch (iconColor) {
+  case 'green':
+    iconColorClass = 'text-green-600'
+    iconColorBgClass = 'bg-green-100'
+    break
+  case 'blue':
+    iconColorClass = 'text-blue-600'
+    iconColorBgClass = 'bg-blue-100'
+    break
+  default:
+    iconColorClass = 'text-purple-600'
+    iconColorBgClass = 'bg-purple-100'
+    break
+}
+---
+
+<div class="flex items-center p-8 bg-white shadow rounded-lg">
+  <div
+    class={`inline-flex flex-shrink-0 items-center justify-center h-16 w-16 ${iconColorClass} ${iconColorBgClass} rounded-full mr-6`}
+  >
+    <slot name="icon" />
+  </div>
+  <div>
+    <span class="block text-2xl font-bold">{number}</span>
+    <span class="block text-gray-500">{label}</span>
+  </div>
+</div>

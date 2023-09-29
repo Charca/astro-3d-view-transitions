@@ -1,0 +1,92 @@
+---
+import { ViewTransitions } from 'astro:transitions'
+import { Character } from '../components/Character'
+import { Navigation } from '../components/Navigation'
+interface Props {
+  title: string
+}
+
+const { title } = Astro.props
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content="Astro description" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <ViewTransitions />
+  </head>
+  <body>
+    <div class="h-screen flex flex-col">
+      <div transition:persist transition:name="character" class="h-full">
+        <Character client:load />
+      </div>
+      <div class="absolute w-full z-10">
+        <div transition:persist transition:name="navbar">
+          <Navigation client:load />
+        </div>
+        <div class="content p-8" transition:name="content">
+          <slot />
+        </div>
+      </div>
+    </div>
+    <style is:global>
+      ::view-transition-old(navbar),
+      ::view-transition-new(navbar) {
+        animation: none;
+        mix-blend-mode: normal;
+      }
+
+      ::view-transition-old(character),
+      ::view-transition-new(character) {
+        animation: none;
+        mix-blend-mode: normal;
+      }
+
+      @keyframes fade-in {
+        from {
+          opacity: 0;
+        }
+      }
+
+      @keyframes fade-out {
+        to {
+          opacity: 0;
+        }
+      }
+
+      @keyframes slide-from-right {
+        from {
+          transform: translateX(30px);
+        }
+      }
+
+      @keyframes slide-to-left {
+        to {
+          transform: translateX(-30px);
+        }
+      }
+
+      ::view-transition-old(content) {
+        animation:
+          90ms cubic-bezier(0.4, 0, 1, 1) both fade-out,
+          300ms cubic-bezier(0.4, 0, 0.2, 1) both slide-to-left;
+      }
+
+      ::view-transition-new(content) {
+        animation:
+          210ms cubic-bezier(0, 0, 0.2, 1) 90ms both fade-in,
+          300ms cubic-bezier(0.4, 0, 0.2, 1) both slide-from-right;
+      }
+    </style>
+    <script>
+      document.addEventListener('astro:page-load', () => {
+        document.dispatchEvent(new CustomEvent('route-change'))
+      })
+    </script>
+  </body>
+</html>

@@ -1,0 +1,18 @@
+---
+import Card from '../components/Card.astro'
+import Layout from '../layouts/Layout.astro'
+import StudentIcon from '../components/icons/StudentIcon.astro'
+import PositiveChartICon from '../components/icons/PositiveChartIcon.astro'
+---
+
+<Layout title="Astro 3D View Transitions Demo">
+  <div class="max-w-[300px] flex flex-col gap-8">
+    <h1 class="font-bold text-4xl">Dashboard</h1>
+    <Card number={62} label="Students">
+      <StudentIcon slot="icon" />
+    </Card>
+    <Card number={6.8} label="Average mark" iconColor="green">
+      <PositiveChartICon slot="icon" />
+    </Card>
+  </div>
+</Layout>
