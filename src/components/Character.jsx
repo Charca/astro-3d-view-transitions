@@ -80,9 +80,11 @@ export const Character = () => {
     onRouteChage()
 
     document.addEventListener('route-change', onRouteChage)
+    document.addEventListener('route-navigation', onRouteChage)
 
     return () => {
       document.removeEventListener('route-change', onRouteChage)
+      document.removeEventListener('route-navigation', onRouteChage)
     }
   }, [])
 

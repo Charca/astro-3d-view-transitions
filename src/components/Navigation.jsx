@@ -45,13 +45,15 @@ export const Navigation = () => {
 
     setActive(path)
 
-    document.dispatchEvent(
-      new CustomEvent('route-change', {
-        detail: {
-          path,
-        },
-      })
-    )
+    setTimeout(() => {
+      document.dispatchEvent(
+        new CustomEvent('route-navigation', {
+          detail: {
+            path,
+          },
+        })
+      )
+    })
   }
 
   return (
