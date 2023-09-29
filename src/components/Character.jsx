@@ -5,7 +5,7 @@ import { EffectComposer, TiltShift2 } from '@react-three/postprocessing'
 import * as THREE from 'three'
 
 function Model({ isRotated, isZoomedIn, ...props }) {
-  const { nodes, materials, animations } = useGLTF('/walking.glb')
+  const { nodes, materials, animations } = useGLTF('/walking3.glb')
   const { ref, actions } = useAnimations(animations)
   useEffect(() => {
     actions.walk.timeScale = 0.75
@@ -64,7 +64,7 @@ export const Character = () => {
         event && event.detail ? event.detail.path : window.location.pathname
       const normalizedPath = path.replace(/\/$/, '')
       switch (normalizedPath) {
-        case '/':
+        case '':
           goToDashboard()
           break
         case '/journal':

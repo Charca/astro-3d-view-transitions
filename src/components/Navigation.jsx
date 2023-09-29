@@ -6,7 +6,7 @@ export const Navigation = () => {
   function setActive(path) {
     const normalizedPath = path.replace(/\/$/, '')
     switch (normalizedPath) {
-      case '/':
+      case '':
         setCurrent('dashboard')
         break
       case '/journal':
