@@ -62,7 +62,8 @@ export const Character = () => {
     function onRouteChage(event) {
       const path =
         event && event.detail ? event.detail.path : window.location.pathname
-      switch (path) {
+      const normalizedPath = path.replace(/\/$/, '')
+      switch (normalizedPath) {
         case '/':
           goToDashboard()
           break

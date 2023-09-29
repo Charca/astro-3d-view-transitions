@@ -84,7 +84,7 @@ const { title } = Astro.props
       }
     </style>
     <script>
-      document.addEventListener('astro:after-swap', () => {
+      document.addEventListener('astro:page-load', () => {
         document.dispatchEvent(new CustomEvent('route-change'))
       })
     </script>

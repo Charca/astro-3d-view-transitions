@@ -4,7 +4,8 @@ export const Navigation = () => {
   const [current, setCurrent] = useState()
 
   function setActive(path) {
-    switch (path) {
+    const normalizedPath = path.replace(/\/$/, '')
+    switch (normalizedPath) {
       case '/':
         setCurrent('dashboard')
         break
