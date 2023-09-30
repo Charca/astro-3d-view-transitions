@@ -18,14 +18,16 @@ const { title } = Astro.props
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
-    <ViewTransitions />
+    <ViewTransitions fallback="swap" />
   </head>
   <body>
     <div class="h-screen flex flex-col">
       <div transition:persist transition:name="character" class="h-full">
         <Character client:load />
       </div>
-      <div class="absolute w-full z-10">
+      <div
+        class="absolute w-full z-10 h-full flex flex-col justify-between md:justify-normal"
+      >
         <div transition:persist transition:name="navbar">
           <Navigation client:load />
         </div>
